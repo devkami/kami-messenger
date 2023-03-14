@@ -28,7 +28,7 @@ class Messenger(ABC, BaseModel):
     engine: Any = None
 
     @abstractmethod
-    def _validate_messages_recipients(message):
+    def _validate_message_recipients(message) -> Message:
         ...
 
     @classmethod
@@ -37,17 +37,23 @@ class Messenger(ABC, BaseModel):
         ...
 
     @abstractmethod
-    def connect(self) -> str:
+    def connect(self) -> int:
         ...
 
     @abstractmethod
-    def _sendMessage(self, messages=None):
+    def _sendMessage(self, message) -> int:
         ...
 
-    def sendMessage(self, messages=None):
+    def sendMessage(self, messages=None) -> int:
+        sent_messages = 0
         selected_messages = self.messages
         if messages:
             selected_messages = messages
 
         for message in selected_messages:
-            self._sendMessage(message)
+            try:
+                sent_messages += 1 if self._sendMessage(message) == 200 else 0
+            except Exception as e:
+                raise e
+
+        return sent_messages

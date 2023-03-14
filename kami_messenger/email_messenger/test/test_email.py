@@ -33,13 +33,26 @@ class TestEmailMessenger:
         new_email_messenger = EmailMessenger(**json_data)
         assert json_data == new_email_messenger.dict()
 
-    def test_connect_email_engine(self):
+    def test_when_email_sucess_connect_should_returns_200(self):
+        json_data = json.loads(self.data)
+        new_email_messenger = EmailMessenger(**json_data)
+        status = new_email_messenger.connect()
+
+        assert status == 200
+
+    def test_when_connect_email_should_update_engine(self):
         json_data = json.loads(self.data)
         new_email_messenger = EmailMessenger(**json_data)
         new_email_messenger.connect()
 
         assert new_email_messenger.engine != None
 
-    @mark.skip(reason='Defined but not implemented')
-    def test_when_message_get_invalid_json_data_then_returns_none(self):
-        pass
+    def test_when_send_message_by_email_should_return_sent_messages_quantity(
+        self,
+    ):
+        json_data = json.loads(self.data)
+        new_email_messenger = EmailMessenger(**json_data)
+        messages_to_send = len(new_email_messenger.messages)
+        sent_messages = new_email_messenger.sendMessage()
+
+        assert messages_to_send == sent_messages

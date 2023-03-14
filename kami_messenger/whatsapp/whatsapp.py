@@ -20,30 +20,42 @@ class Whatsapp(Messenger):
                 data = DataValidator(recipient)
                 data.isPhone()
             except PhoneFormatError:
-                raise RecipientFormatError(
+                e = RecipientFormatError(
                     recipient,
                     f'Recipient {recipient} should be an valid phone number',
                 )
+                whatsapp_messenger_logger.error(f'{e.message} - {e.args}')
+                raise
+            except Exception as e:
+                whatsapp_messenger_logger.error(traceback.format_exc())
             finally:
                 return message
 
     @validator('messages', pre=True, each_item=True)
     @classmethod
     def recipientsValid(cls, message):
-        cls._validate_messages_recipients(message)
+        cls._validate_message_recipients(message)
 
     @logging_with(whatsapp_messenger_logger)
     @benchmark_with(whatsapp_messenger_logger)
     def connect(self):
-        # implementar
-        ...
+        try:
+            engine = None
+            # Implementar a conexão com o serviço do whatsapp e atualizar a variavel engine com o objeto responsavel por enviar mensagens
+        except Exception as e:
+            whatsapp_messenger_logger.error(traceback.format_exc())
+            raise
+        else:
+            self.engine = engine
+            whatsapp_messenger_logger.info(f'Success Connected')
 
     @logging_with(whatsapp_messenger_logger)
     @benchmark_with(whatsapp_messenger_logger)
     def _sendMessage(self, message):
         try:
             self.connect()
-            # implementar
+            # Implementar o envio de mensagens pelo botconversa usando o atributo 'engine'
+            # Exemplo: self.engine.send_message()
             ...
         except Exception as e:
             whatsapp_messenger_logger.error(traceback.format_exc())

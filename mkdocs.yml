@@ -1,0 +1,16 @@
+site_name: Kami Messenger
+repo_url: https://github.com/devkami/kami-messenger
+repo_name: devkami/kami-messenger
+edit_uri: tree/master/docs
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/icon.png
+  favicon: assets/icon.png
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css

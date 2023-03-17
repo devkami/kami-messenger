@@ -33,7 +33,7 @@ class TestWhatsapp:
         json_data = json.loads(self.data)
         new_whatsapp_messenger = Whatsapp(**json_data)
         status = new_whatsapp_messenger.connect()
-        
+
         assert status == 200
 
     def test_when_connect_whatsapp_should_update_engine(self):
@@ -43,7 +43,9 @@ class TestWhatsapp:
 
         assert new_whatsapp_messenger.engine != None
 
-    def test_when_send_message_by_whatsapp_should_return_sent_messages_quantity(self):
+    def test_when_send_message_by_whatsapp_should_return_sent_messages_quantity(
+        self,
+    ):
         json_data = json.loads(self.data)
         new_whatsapp_messenger = Whatsapp(**json_data)
         messages_to_send = len(new_whatsapp_messenger.messages)

@@ -74,5 +74,10 @@ class DataValidator:
         return True
 
     def _isIdBotconversa(self):
-        # Implementar uma função que verifica se self.value é um id de contato do botconversa válido e caso contrário levanta uma exceção do tipo IdBotconversaMissingError, utilizar os métodos anteriores como exemplo
-        ...
+        # Implementar uma função que verifica se self.value é um id de contato do botconversa válido e caso contrário
+        # levanta uma exceção do tipo IdBotconversaMissingError, utilizar os métodos anteriores como exemplo
+        if not self.value.startswith('+55'):
+            raise IdBotconversaMissingError(
+                f'{self.value} is not a valid botconversa contact ID.'
+            )
+        return True

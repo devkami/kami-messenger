@@ -65,7 +65,7 @@ class EmailMessenger(Messenger):
                 email_message.as_string().encode('utf-8'),
             )
         except Exception as e:
-            raise e            
+            raise e
         finally:
             email_messenger_logger.info(
                 f'Message Sucessufully Sent To {message.recipients}'

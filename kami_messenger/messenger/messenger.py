@@ -3,9 +3,9 @@
 """
 The Messenger Module represents a generic messaging service, used to abstract the characteristics common to all messaging services used in the project.
 
-Classes:   
+Classes:
    Message: str Name that identifies the messaging service
-   Messenger: List[Message] List of messages to send   
+   Messenger: List[Message] List of messages to send
    RecipientFormatError: Custom error that is raised when a recipients doesn't have the rigth format.
 """
 from abc import ABC, abstractmethod
@@ -39,6 +39,7 @@ class Message(BaseModel):
         subject: Message subject is optional
         body: message body, content that will be sent to recipients
     """
+
     sender: str
     recipients: List[str]
     subject: Optional[str]
@@ -55,6 +56,7 @@ class Messenger(ABC, BaseModel):
         credentials: Dict Dictionary with the information needed to connect the service
         engine: Any Object that contains methods for sending messages
     """
+
     name: str
     messages: List[Message] = []
     credentials: Dict
@@ -93,7 +95,7 @@ class Messenger(ABC, BaseModel):
     @abstractmethod
     def connect(self) -> int:
         """
-        Connect with the messaging service using self.credentials for the necessary information to connect (eg Login and Password or API-Token) and updates the 'engine' attribute with the service created for sending messages if any success.        
+        Connect with the messaging service using self.credentials for the necessary information to connect (eg Login and Password or API-Token) and updates the 'engine' attribute with the service created for sending messages if any success.
 
         Returns:
             An integer that represents the status code obeying the http service status code standard (eg: 200 to success and 404 to not found error).
@@ -132,7 +134,7 @@ class Messenger(ABC, BaseModel):
         Raises:
             Exception: If there is any problem with the service trying to send message.
         """
-        
+
         sent_messages = 0
         selected_messages = self.messages
         if messages:

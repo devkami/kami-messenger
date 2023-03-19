@@ -1,9 +1,15 @@
-from .validator import DataValidator, EmailFormatError, HTMLFormatError, IdBotconversaMissingError, PhoneFormatError
+from .validator import (
+    DataValidator,
+    EmailFormatError,
+    HTMLFormatError,
+    IdBotconversaMissingError,
+    PhoneFormatError,
+)
 
-
-__all__ = [   
+__all__ = [
     'DataValidator',
     'HTMLFormatError',
     'PhoneFormatError',
-    'EmailFormatError'
+    'EmailFormatError',
+    'IdBotconversaMissingError',
 ]

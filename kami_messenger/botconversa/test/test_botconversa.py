@@ -3,7 +3,6 @@ import json
 from os import getenv
 
 from dotenv import load_dotenv
-from pytest import mark
 
 from kami_messenger.botconversa import Botconversa
 
@@ -34,7 +33,7 @@ class TestBotconversa:
         json_data = json.loads(self.data)
         new_botconversa_messenger = Botconversa(**json_data)
         status = new_botconversa_messenger.connect()
-        
+
         assert status == 200
 
     def test_when_connect_botconversa_should_update_engine(self):
@@ -44,7 +43,9 @@ class TestBotconversa:
 
         assert new_botconversa_messenger.engine != None
 
-    def test_when_send_message_by_botconversa_should_return_sent_messages_quantity(self):
+    def test_when_send_message_by_botconversa_should_return_sent_messages_quantity(
+        self,
+    ):
         json_data = json.loads(self.data)
         new_botconversa_messenger = Botconversa(**json_data)
         messages_to_send = len(new_botconversa_messenger.messages)

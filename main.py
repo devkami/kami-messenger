@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from kami_messenger.botconversa import Botconversa
 from kami_messenger.email_messenger import EmailMessenger
+from kami_messenger.validator import DataValidator
 
 load_dotenv()
 
@@ -43,3 +44,6 @@ botconversa_data = {
 }
 botconversa = Botconversa(**botconversa_data)
 botconversa.sendMessage()
+
+validator = DataValidator(getenv("RECIPIENT_NUMBER"))
+DataValidator._isIdBotconversa(validator)

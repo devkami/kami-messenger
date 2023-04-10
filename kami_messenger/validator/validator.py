@@ -4,6 +4,10 @@ import phonenumbers as phonevalidator
 
 from .custom_html_parser import MyHTMLParser
 
+import requests
+from urllib.parse import urljoin
+
+
 
 class PhoneFormatError(Exception):
     """Custom error that is raised when a phone number doesn't have the rigth format."""
@@ -74,5 +78,18 @@ class DataValidator:
         return True
 
     def _isIdBotconversa(self):
-        # Implementar uma função que verifica se self.value é um id de contato do botconversa válido e caso contrário levanta uma exceção do tipo IdBotconversaMissingError, utilizar os métodos anteriores como exemplo
-        ...
+        api_url = f"https://backend.botconversa.com.br/api/v1/webhook/subscriber/get_by_phone/{self.value}/"
+
+        headers = {
+            'accept': 'application/json',
+            'api-key': 'b6ba8d5c-19a1-4c38-8f5b-3966f11f2bbe',
+            'Content-Type': 'application/json',
+        }
+        response = requests.get(api_url, headers=headers)
+        if response.status_code > 399:
+            raise IdBotconversaMissingError(value=self.value, message="It's Not A Valid IdBotconversa User.")
+        
+        data = response.json()
+        idBotConversa = data['id']
+        return True
+        

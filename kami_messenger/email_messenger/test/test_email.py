@@ -10,6 +10,7 @@ from kami_messenger.email_messenger import EmailMessenger
 load_dotenv()
 
 
+@mark.skip(reason='Needs to create fixtures to test without real values')
 class TestEmailMessenger:
     data = f"""{{
       "name":"Gmail",

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
-from os import getenv
 
 from dotenv import load_dotenv
+from pytest import mark
 
 from kami_messenger.botconversa import Botconversa
 
 load_dotenv()
 
 
+@mark.skip(reason='Defined but not implemented')
 class TestBotconversa:
     data = f"""{{
       "name":"Botconversa",

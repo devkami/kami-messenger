@@ -59,7 +59,7 @@ class Botconversa(Messenger):
     @logging_with(botconversa_messenger_logger)
     @benchmark_with(botconversa_messenger_logger)
     def _getIdBotconversaByPhone(self, phone: str) -> str:
-        api_url = f'https://backend.botconversa.com.br/api/v1/webhook/subscriber/get_by_phone/{phone}/'
+        url = f'https://backend.botconversa.com.br/api/v1/webhook/subscriber/get_by_phone/{phone}/'
 
         headers = {
             'accept': 'application/json',
@@ -68,7 +68,7 @@ class Botconversa(Messenger):
         }
 
         try:
-            response = requests.get(api_url, headers=headers)
+            response = requests.get(url, headers=headers)
             if response.status_code < 200 or response.status_code > 299:
                 raise MessageNotSendError(
                     value=response.status_code,
@@ -89,10 +89,8 @@ class Botconversa(Messenger):
             message_data = {'type': message.type, 'value': message.body}
             for recipient in message.recipients:
                 id_botconversa = self._getIdBotconversaByPhone(recipient)
-                url = urljoin(
-                    'https://backend.botconversa.com.br/api/v1/webhook',
-                    f'webhook/subscriber/{id_botconversa}/send_message/',
-                )
+                url = f'https://backend.botconversa.com.br/api/v1/webhook/subscriber/{id_botconversa}/send_message/'
+
                 headers = {
                     'accept': 'application/json',
                     'api-key': self.credentials['api-key'],

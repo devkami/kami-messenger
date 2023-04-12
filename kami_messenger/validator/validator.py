@@ -1,10 +1,14 @@
 import re
+from os import getenv
 from urllib.parse import urljoin
 
 import phonenumbers as phonevalidator
 import requests
+from dotenv import load_dotenv
 
 from .custom_html_parser import MyHTMLParser
+
+load_dotenv()
 
 
 class PhoneFormatError(Exception):
@@ -80,7 +84,7 @@ class DataValidator:
 
         headers = {
             'accept': 'application/json',
-            'api-key': 'b6ba8d5c-19a1-4c38-8f5b-3966f11f2bbe',
+            'api-key': getenv('BOTCONVERSA_API_TOKEN'),
             'Content-Type': 'application/json',
         }
         response = requests.get(api_url, headers=headers)

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from kami_messenger.botconversa import Botconversa
 from kami_messenger.email_messenger import EmailMessenger
+from kami_messenger.validator import DataValidator
 
 load_dotenv()
 
@@ -33,7 +34,7 @@ botconversa_data = {
     'messages': [
         {
             'sender': 'adsandroxerd@gmail.com',
-            'recipients': ['115053471'],
+            'recipients': ['+5521983144824'],
             'body': 'Esse texto não é enviado',
             'type': 'text',
         }

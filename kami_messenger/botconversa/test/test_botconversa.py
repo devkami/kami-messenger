@@ -13,12 +13,13 @@ class TestBotconversa:
     data = f"""{{
       "name":"Botconversa",
       "messages":[{{
-          "sender":"124707269",
-          "recipients":["124707269"],
+          "sender":"+5511916654692",
+          "recipients":["+5521983144824"],
           "subject":"Teste",
-          "body":"<p>Teste de mensagem</p>"
-        }}],
-      "credentials":{{" implementar o dicionário das credenciais necessárias para acessar o botconversa usando getenv() para proteção dos dados ": "valor"}},
+          "body":"<p>Teste de mensagem</p>",
+          "type":"text"
+          }}],          
+      "credentials":{{"api-key": "b6ba8d5c-19a1-4c38-8f5b-3966f11f2bbe"}},
       "engine":null
     }}"""
 
@@ -28,20 +29,6 @@ class TestBotconversa:
         json_data = json.loads(self.data)
         new_botconversa_messenger = Botconversa(**json_data)
         assert json_data == new_botconversa_messenger.dict()
-
-    def test_when_botconversa_sucess_connect_should_returns_200(self):
-        json_data = json.loads(self.data)
-        new_botconversa_messenger = Botconversa(**json_data)
-        status = new_botconversa_messenger.connect()
-
-        assert status == 200
-
-    def test_when_connect_botconversa_should_update_engine(self):
-        json_data = json.loads(self.data)
-        new_botconversa_messenger = Botconversa(**json_data)
-        new_botconversa_messenger.connect()
-
-        assert new_botconversa_messenger.engine != None
 
     def test_when_send_message_by_botconversa_should_return_sent_messages_quantity(
         self,

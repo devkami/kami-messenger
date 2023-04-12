@@ -1,7 +1,13 @@
-from .messenger import Message, Messenger, RecipientFormatError
+from .messenger import (
+    Message,
+    MessageNotSendError,
+    Messenger,
+    RecipientFormatError,
+)
 
 __all__ = [
     'RecipientFormatError',
     'Message',
     'Messenger',
+    'MessageNotSendError',
 ]

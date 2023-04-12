@@ -1,6 +1,8 @@
 import re
+from urllib.parse import urljoin
 
 import phonenumbers as phonevalidator
+import requests
 
 from .custom_html_parser import MyHTMLParser
 
@@ -74,5 +76,18 @@ class DataValidator:
         return True
 
     def _isIdBotconversa(self):
-        # Implementar uma função que verifica se self.value é um id de contato do botconversa válido e caso contrário levanta uma exceção do tipo IdBotconversaMissingError, utilizar os métodos anteriores como exemplo
-        ...
+        api_url = f'https://backend.botconversa.com.br/api/v1/webhook/subscriber/get_by_phone/{self.value}/'
+
+        headers = {
+            'accept': 'application/json',
+            'api-key': 'b6ba8d5c-19a1-4c38-8f5b-3966f11f2bbe',
+            'Content-Type': 'application/json',
+        }
+        response = requests.get(api_url, headers=headers)
+        if response.status_code < 200 or response.status_code >= 400:
+            raise IdBotconversaMissingError(
+                value=self.value,
+                message="It's Not A Valid IdBotconversa User.",
+            )
+
+        return True

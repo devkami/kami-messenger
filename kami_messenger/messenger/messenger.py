@@ -44,6 +44,7 @@ class Message(BaseModel):
     recipients: List[str]
     subject: Optional[str]
     body: str
+    type: str = 'text'
 
 
 class Messenger(ABC, BaseModel):

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import json
 import logging
 import traceback
+from urllib.parse import urljoin
 
+import requests
 from dotenv import load_dotenv
 from kami_logging import benchmark_with, logging_with
 from pydantic import validator
@@ -53,10 +56,23 @@ class Botconversa(Messenger):
     @benchmark_with(botconversa_messenger_logger)
     def _sendMessage(self, message):
         try:
-            self.connect()
-            # Implementar o envio de mensagens pelo botconversa usando o atributo 'engine'
-            # Exemplo: self.engine.send_message()
-            ...
+            message_data = {'type': message.type, 'value': message.body}
+            for recipient in message.recipients:
+                url = urljoin(
+                    'https://backend.botconversa.com.br/api/v1/webhook',
+                    f'webhook/subscriber/{recipient}/send_message/',
+                )
+                headers = {
+                    'accept': 'application/json',
+                    'api-key': self.credentials['api-key'],
+                    'Content-Type': 'application/json',
+                }
+                response = requests.post(
+                    url, headers=headers, data=json.dumps(message_data)
+                )
+                botconversa_messenger_logger.info(
+                    f'Try to send message to: {recipient} | Status: {response.status_code}'
+                )
         except Exception as e:
             botconversa_messenger_logger.error(traceback.format_exc())
             raise

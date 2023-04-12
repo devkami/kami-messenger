@@ -34,7 +34,7 @@ botconversa_data = {
     'messages': [
         {
             'sender': 'adsandroxerd@gmail.com',
-            'recipients': ['115053471'],
+            'recipients': ['+5521983144824'],
             'body': 'Esse texto não é enviado',
             'type': 'text',
         }
@@ -44,6 +44,3 @@ botconversa_data = {
 }
 botconversa = Botconversa(**botconversa_data)
 botconversa.sendMessage()
-
-validator = DataValidator(getenv("RECIPIENT_NUMBER"))
-DataValidator._isIdBotconversa(validator)

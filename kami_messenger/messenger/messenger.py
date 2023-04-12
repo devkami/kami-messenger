@@ -29,6 +29,15 @@ class RecipientFormatError(Exception):
         super().__init__(message)
 
 
+class MessageNotSendError(Exception):
+    """Custom error that is raised when a message is not sended to a recipient."""
+
+    def __init__(self, value: str, message: str) -> None:
+        self.value = value
+        self.message = message
+        super().__init__(message)
+
+
 class Message(BaseModel):
     """
     Represents a generic message used in all messengers.

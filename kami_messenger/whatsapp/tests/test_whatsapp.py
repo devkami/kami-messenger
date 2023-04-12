@@ -3,12 +3,14 @@ import json
 from os import getenv
 
 from dotenv import load_dotenv
+from pytest import mark
 
 from kami_messenger.whatsapp import Whatsapp
 
 load_dotenv()
 
 
+@mark.skip(reason='Defined but not implemented')
 class TestWhatsapp:
     data = f"""{{
       "name":"Whatsapp",

@@ -17,7 +17,8 @@ class TestEmailMessenger:
           "sender":"dev@kamico.com.br",
           "recipients":["maicon@kamico.com.br"],
           "subject":"Teste",
-          "body":"<p>Teste de mensagem</p>"
+          "body":"<p>Teste de mensagem</p>",
+          "type":"text"
         }}],
       "credentials":{{
           "login":"{getenv("EMAIL_USER")}",

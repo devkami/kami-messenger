@@ -11,7 +11,8 @@ class TestMessage:
         "sender":"dev@kamico.com.br",
         "recipients":["maicon@kamico.com.br"],
         "subject":"Teste",
-        "body":"<p>Teste de mensagem</p>"
+        "body":"<p>Teste de mensagem</p>",
+        "type":"text"
     }"""
 
     def test_when_message_get_valid_json_data_then_returns_new_message(self):

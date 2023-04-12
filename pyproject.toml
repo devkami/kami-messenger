@@ -5,6 +5,18 @@ description = "Library to aggregate multiple messengers services"
 authors = ["Maicon de Menezes <maicondmenezes@gmail.com>"]
 readme = "README.md"
 packages = [{include = "kami_messenger"}]
+classifiers = [  
+  "Topic :: Communications :: Email",
+  "Topic :: Communications :: Telephony",
+  "Programming Language :: Python :: 3",      
+  "Natural Language :: English",
+  "Development Status :: 4 - Beta",
+]
+
+[tool.poetry.urls]
+"Docs" = "https://kami-messenger.readthedocs.io/en/latest/"
+"Source" = "https://github.com/devkami/kami-messenger"
+"Bug Tracker" = "https://github.com/devkami/kami-messenger/issues" 
 
 [tool.poetry.dependencies]
 python = "^3.9"

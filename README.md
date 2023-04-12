@@ -10,7 +10,8 @@
 [![GitHub release](https://img.shields.io/github/release/devkami/kami-messenger.svg)](https://GitHub.com/devkami/kami-messenger/releases/)
 [![GitHub issues](https://badgen.net/github/issues/devkami/kami-messenger/)](https://github.com/devkami/kami-messenger/issues/)
 [![License](https://img.shields.io/badge/License-GNU-blue)](/LICENSE)
-
+[![Documentation Status](https://readthedocs.org/projects/kami-messenger/badge/?version=latest)](https://kami-messenger.readthedocs.io/en/latest/?badge=latest)
+![CI](https://github.com/devkami/kami-messenger/actions/workflows/pipeline.yml/badge.svg)
 
 </div>
 
@@ -53,12 +54,8 @@ To run this package you only need a [python 3.x](https://www.python.org/download
 
 ### Installing
 
-If you still don't have poetry installed in your development environment follow [this tutorial](https://python-poetry.org/docs/#installation) and install the latest version
-
-After the repository has already been cloned to your local development environment, it's time to install the project's dependencies using the command below in the root of the project
-
 ```bash
-poetry install
+pip install kami-messenger
 ```
 
 Then, after installing the dependencies, just activate the development environment with the following command:
